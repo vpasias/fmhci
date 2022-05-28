@@ -3,9 +3,7 @@ ENV['VAGRANT_EXPERIMENTAL'] = 'typed_triggers'
 Vagrant.configure('2') do |config|
   config.vm.provider :libvirt do |config|
     config.vm.box = 'proxmox-ve-amd64'
-    config.management_network_address = "10.0.0.0/24"
-    config.management_network_name = "mgm1"
-    config.nic_adapter_count = 130
+    config.nic_adapter_count = 8
     config.memory = 16*1024
     config.cpus = 4
     config.cpu_mode = 'host-passthrough'
