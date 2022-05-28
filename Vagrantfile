@@ -25,9 +25,9 @@ Vagrant.configure('2') do |config|
             libvirt__dhcp_enabled: false,
             libvirt__forward_mode: 'none'
       # link for eth1 --> pmx2:eth1
-      device.vm.network "public_network", bridge: "br12"
+      device.vm.network :public_network, :bridge => 'br12', :dev => 'br12'
       # link for eth2 --> pmx3:eth1
-      device.vm.network "public_network", bridge: "br13"
+      device.vm.network :public_network, :bridge => 'br13', :dev => 'br13'
 end
 
   ##### DEFINE VM for pmx2 #####
@@ -41,9 +41,9 @@ end
             libvirt__dhcp_enabled: false,
             libvirt__forward_mode: 'none'
       # link for eth1 --> pmx1:eth1
-      device.vm.network "public_network", bridge: "br12"
+      device.vm.network :public_network, :bridge => 'br12', :dev => 'br12'
       # link for eth2 --> pmx3:eth2
-      device.vm.network "public_network", bridge: "br23"
+      device.vm.network :public_network, :bridge => 'br23', :dev => 'br23'
 end
 
   ##### DEFINE VM for pmx3 #####
@@ -57,9 +57,9 @@ end
             libvirt__dhcp_enabled: false,
             libvirt__forward_mode: 'none'  
       # link for eth1 --> pmx1:eth2
-      device.vm.network "public_network", bridge: "br13"
+      device.vm.network :public_network, :bridge => 'br13', :dev => 'br13'
       # link for eth2 --> pmx2:eth2
-      device.vm.network "public_network", bridge: "br23"
+      device.vm.network :public_network, :bridge => 'br23', :dev => 'br23'
 end
 
 end
