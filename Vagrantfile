@@ -25,21 +25,9 @@ Vagrant.configure('2') do |config|
             libvirt__dhcp_enabled: false,
             libvirt__forward_mode: 'none'
       # link for eth1 --> pmx2:eth1
-      device.vm.network "private_network",
-            :libvirt__tunnel_type => "udp",
-            :libvirt__tunnel_local_ip => "127.1.1.1",
-            :libvirt__tunnel_local_port => "1002",
-            :libvirt__tunnel_ip => "127.1.2.1",
-            :libvirt__tunnel_port => "1002",
-            auto_config: false
+      device.vm.network "public_network", bridge: "br12"
       # link for eth2 --> pmx3:eth1
-      device.vm.network "private_network",
-            :libvirt__tunnel_type => "udp",
-            :libvirt__tunnel_local_ip => "127.1.1.2",
-            :libvirt__tunnel_local_port => "1003",
-            :libvirt__tunnel_ip => "127.1.3.1",
-            :libvirt__tunnel_port => "1003",
-            auto_config: false
+      device.vm.network "public_network", bridge: "br13"
 end
 
   ##### DEFINE VM for pmx2 #####
@@ -53,21 +41,9 @@ end
             libvirt__dhcp_enabled: false,
             libvirt__forward_mode: 'none'
       # link for eth1 --> pmx1:eth1
-      device.vm.network "private_network",
-            :libvirt__tunnel_type => "udp",
-            :libvirt__tunnel_local_ip => "127.1.2.1",
-            :libvirt__tunnel_local_port => "1002",
-            :libvirt__tunnel_ip => "127.1.1.1",
-            :libvirt__tunnel_port => "1002",
-            auto_config: false
+      device.vm.network "public_network", bridge: "br12"
       # link for eth2 --> pmx3:eth2
-      device.vm.network "private_network",
-            :libvirt__tunnel_type => "udp",
-            :libvirt__tunnel_local_ip => "127.1.2.2",
-            :libvirt__tunnel_local_port => "2003",
-            :libvirt__tunnel_ip => "127.1.3.2",
-            :libvirt__tunnel_port => "2003",
-            auto_config: false
+      device.vm.network "public_network", bridge: "br23"
 end
 
   ##### DEFINE VM for pmx3 #####
@@ -81,21 +57,9 @@ end
             libvirt__dhcp_enabled: false,
             libvirt__forward_mode: 'none'  
       # link for eth1 --> pmx1:eth2
-      device.vm.network "private_network",
-            :libvirt__tunnel_type => "udp",
-            :libvirt__tunnel_local_ip => "127.1.3.1",
-            :libvirt__tunnel_local_port => "1003",
-            :libvirt__tunnel_ip => "127.1.1.2",
-            :libvirt__tunnel_port => "1003",
-            auto_config: false
+      device.vm.network "public_network", bridge: "br13"
       # link for eth2 --> pmx2:eth2
-      device.vm.network "private_network",
-            :libvirt__tunnel_type => "udp",
-            :libvirt__tunnel_local_ip => "127.1.3.2",
-            :libvirt__tunnel_local_port => "2003",
-            :libvirt__tunnel_ip => "127.1.2.2",
-            :libvirt__tunnel_port => "2003",
-            auto_config: false
+      device.vm.network "public_network", bridge: "br23"
 end
 
 end
