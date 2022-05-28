@@ -1,4 +1,4 @@
-ENV['VAGRANT_EXPERIMENTAL'] = 'typed_triggers'
+ENV['VAGRANT_EXPERIMENTAL'] = 'typed_triggers,disks'
 
 Vagrant.configure('2') do |config|
   config.vm.box = 'proxmox-ve-amd64'
@@ -26,23 +26,19 @@ Vagrant.configure('2') do |config|
             libvirt__forward_mode: 'none'
       # link for eth1 --> pmx2:eth1
       device.vm.network "private_network",
-            :mac => "a0:00:00:00:00:01",
-            :libvirt__tunnel_type => 'udp',
-            :libvirt__tunnel_local_ip => '127.1.1.1',
-            :libvirt__tunnel_local_port => '1002',
-            :libvirt__tunnel_ip => '127.1.2.1',
-            :libvirt__tunnel_port => '1002',
-            :libvirt__iface_name => 'eth1',
+            :libvirt__tunnel_type => "udp",
+            :libvirt__tunnel_local_ip => "127.1.1.1",
+            :libvirt__tunnel_local_port => "1002",
+            :libvirt__tunnel_ip => "127.1.2.1",
+            :libvirt__tunnel_port => "1002",
             auto_config: false
       # link for eth2 --> pmx3:eth1
       device.vm.network "private_network",
-            :mac => "a0:00:00:00:00:02",
-            :libvirt__tunnel_type => 'udp',
-            :libvirt__tunnel_local_ip => '127.1.1.2',
-            :libvirt__tunnel_local_port => '1003',
-            :libvirt__tunnel_ip => '127.1.3.1',
-            :libvirt__tunnel_port => '1003',
-            :libvirt__iface_name => 'eth2',
+            :libvirt__tunnel_type => "udp",
+            :libvirt__tunnel_local_ip => "127.1.1.2",
+            :libvirt__tunnel_local_port => "1003",
+            :libvirt__tunnel_ip => "127.1.3.1",
+            :libvirt__tunnel_port => "1003",
             auto_config: false
 end
 
@@ -58,23 +54,19 @@ end
             libvirt__forward_mode: 'none'
       # link for eth1 --> pmx1:eth1
       device.vm.network "private_network",
-            :mac => "a0:00:00:00:00:03",
-            :libvirt__tunnel_type => 'udp',
-            :libvirt__tunnel_local_ip => '127.1.2.1',
-            :libvirt__tunnel_local_port => '1002',
-            :libvirt__tunnel_ip => '127.1.1.1',
-            :libvirt__tunnel_port => '1002',
-            :libvirt__iface_name => 'eth1',
+            :libvirt__tunnel_type => "udp",
+            :libvirt__tunnel_local_ip => "127.1.2.1",
+            :libvirt__tunnel_local_port => "1002",
+            :libvirt__tunnel_ip => "127.1.1.1",
+            :libvirt__tunnel_port => "1002",
             auto_config: false
       # link for eth2 --> pmx3:eth2
       device.vm.network "private_network",
-            :mac => "a0:00:00:00:00:04",
-            :libvirt__tunnel_type => 'udp',
-            :libvirt__tunnel_local_ip => '127.1.2.2',
-            :libvirt__tunnel_local_port => '2003',
-            :libvirt__tunnel_ip => '127.1.3.2',
-            :libvirt__tunnel_port => '2003',
-            :libvirt__iface_name => 'eth2',
+            :libvirt__tunnel_type => "udp",
+            :libvirt__tunnel_local_ip => "127.1.2.2",
+            :libvirt__tunnel_local_port => "2003",
+            :libvirt__tunnel_ip => "127.1.3.2",
+            :libvirt__tunnel_port => "2003",
             auto_config: false
 end
 
@@ -90,23 +82,19 @@ end
             libvirt__forward_mode: 'none'  
       # link for eth1 --> pmx1:eth2
       device.vm.network "private_network",
-            :mac => "a0:00:00:00:00:05",
-            :libvirt__tunnel_type => 'udp',
-            :libvirt__tunnel_local_ip => '127.1.3.1',
-            :libvirt__tunnel_local_port => '1003',
-            :libvirt__tunnel_ip => '127.1.1.2',
-            :libvirt__tunnel_port => '1003',
-            :libvirt__iface_name => 'eth1',
+            :libvirt__tunnel_type => "udp",
+            :libvirt__tunnel_local_ip => "127.1.3.1",
+            :libvirt__tunnel_local_port => "1003",
+            :libvirt__tunnel_ip => "127.1.1.2",
+            :libvirt__tunnel_port => "1003",
             auto_config: false
       # link for eth2 --> pmx2:eth2
       device.vm.network "private_network",
-            :mac => "a0:00:00:00:00:06",
-            :libvirt__tunnel_type => 'udp',
-            :libvirt__tunnel_local_ip => '127.1.3.2',
-            :libvirt__tunnel_local_port => '2003',
-            :libvirt__tunnel_ip => '127.1.2.2',
-            :libvirt__tunnel_port => '2003',
-            :libvirt__iface_name => 'eth2',
+            :libvirt__tunnel_type => "udp",
+            :libvirt__tunnel_local_ip => "127.1.3.2",
+            :libvirt__tunnel_local_port => "2003",
+            :libvirt__tunnel_ip => "127.1.2.2",
+            :libvirt__tunnel_port => "2003",
             auto_config: false
 end
 
