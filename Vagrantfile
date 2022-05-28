@@ -9,7 +9,8 @@ Vagrant.configure('2') do |config|
     lv.cpu_mode = 'host-passthrough'
     lv.nested = true
     lv.keymap = 'en'
-    lv.machine_virtual_size = 80
+    lv.machine_virtual_size = 30
+    lv.storage :file, :size => '120G'
     lv.nic_model_type = "e1000"
     config.vm.synced_folder '.', '/vagrant', type: 'nfs', nfs_version: '4.2', nfs_udp: false
   end
