@@ -1,16 +1,16 @@
 ENV['VAGRANT_EXPERIMENTAL'] = 'typed_triggers'
 
 Vagrant.configure('2') do |config|
-  config.vm.provider :libvirt do |config|
-    config.vm.box = 'proxmox-ve-amd64'
-    config.nic_adapter_count = 8
-    config.memory = 16*1024
-    config.cpus = 4
-    config.cpu_mode = 'host-passthrough'
-    config.nested = true
-    config.keymap = 'en'
-    config.machine_virtual_size = 30
-    config.nic_model_type = "e1000"
+  config.vm.box = 'proxmox-ve-amd64'
+  config.vm.provider :libvirt do |lv, config|
+    lv.nic_adapter_count = 8
+    lv.memory = 16*1024
+    lv.cpus = 4
+    lv.cpu_mode = 'host-passthrough'
+    lv.nested = true
+    lv.keymap = 'en'
+    lv.machine_virtual_size = 30
+    lv.nic_model_type = "e1000"
     config.vm.synced_folder '.', '/vagrant', disabled: true
   end
 
