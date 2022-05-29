@@ -3,8 +3,6 @@ set -eux
 
 ip=$1
 lo0=$2
-hst=$3
-hostnamectl set-hostname &hst --static
 fqdn=$(hostname --fqdn)
 
 # configure apt for non-interactive mode.
