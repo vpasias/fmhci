@@ -68,7 +68,6 @@ ifup vmbr0
 ifup eth1
 ifup eth2
 ifup eth3
-ifup lo:0
 iptables-save # show current rules.
 killall agetty | true # force them to re-display the issue file.
 
