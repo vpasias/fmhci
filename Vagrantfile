@@ -21,6 +21,7 @@ Vagrant.configure('2') do |config|
       # link for eth1
       ip = '10.0.0.101'
       lo0 = 'fc00::1'
+      rid = '0.0.0.1'    
       device.vm.network :private_network,
         ip: ip,
         auto_config: false,
@@ -28,6 +29,7 @@ Vagrant.configure('2') do |config|
         libvirt__forward_mode: 'none'
       device.vm.provision :shell, path: 'provision.sh', args: ip, lo0 
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
+      device.vm.provision :shell, path: 'frr.sh', args: rid    
       device.vm.provision :shell, path: 'summary.sh', args: ip    
       # link for eth2 --> pmx2:eth2
       device.vm.network :public_network, :bridge => 'br12', :dev => 'br12'
@@ -41,6 +43,7 @@ end
       # link for eth0
       ip = '10.0.0.102'
       lo0 = 'fc00::2'
+      rid = '0.0.0.2'
       device.vm.network :private_network,
         ip: ip,
         auto_config: false,
@@ -48,7 +51,8 @@ end
         libvirt__forward_mode: 'none'
       device.vm.provision :shell, path: 'provision.sh', args: ip, lo0
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
-      device.vm.provision :shell, path: 'summary.sh', args: ip       
+      device.vm.provision :shell, path: 'frr.sh', args: rid
+      device.vm.provision :shell, path: 'summary.sh', args: ip
       # link for eth1 --> pmx1:eth2
       device.vm.network :public_network, :bridge => 'br12', :dev => 'br12'
       # link for eth2 --> pmx3:eth3
@@ -61,6 +65,7 @@ end
       # link for eth0
       ip = '10.0.0.103'
       lo0 = 'fc00::3'
+      rid = '0.0.0.3'    
       device.vm.network :private_network,
         ip: ip,
         auto_config: false,
@@ -68,6 +73,7 @@ end
         libvirt__forward_mode: 'none'
       device.vm.provision :shell, path: 'provision.sh', args: ip, lo0
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
+      device.vm.provision :shell, path: 'frr.sh', args: rid    
       device.vm.provision :shell, path: 'summary.sh', args: ip       
       # link for eth1 --> pmx1:eth3
       device.vm.network :public_network, :bridge => 'br13', :dev => 'br13'
