@@ -18,6 +18,7 @@ Vagrant.configure('2') do |config|
   ##### DEFINE VM for pmx1 #####
 
   config.vm.define "pmx1" do |device|
+      device.vm.hostname = "pmx1"
       ip = '10.0.0.101'
       lo0 = 'fc00::1'
       rid = '0.0.0.1'
@@ -52,6 +53,7 @@ end
   ##### DEFINE VM for pmx2 #####
   
   config.vm.define "pmx2" do |device|
+      device.vm.hostname = "pmx2"
       # link for eth0
       ip = '10.0.0.102'
       lo0 = 'fc00::2'
@@ -86,6 +88,7 @@ end
   ##### DEFINE VM for pmx3 #####
   
   config.vm.define "pmx3" do |device|
+      device.vm.hostname = "pmx3"    
       # link for eth0
       ip = '10.0.0.103'
       lo0 = 'fc00::3'
