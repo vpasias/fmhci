@@ -29,16 +29,12 @@ Vagrant.configure('2') do |config|
         libvirt__forward_mode: 'none'
       # link for eth2 --> pmx2:eth2
       device.vm.network :private_network,
-        ip: '0.0.0.0',
-        auto_config: false,
-        libvirt__dhcp_enabled: false,
-        libvirt__forward_mode: 'none'
+        :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_port => '1122'
       # link for eth3 --> pmx3:eth2
       device.vm.network :private_network,
-        ip: '0.0.0.0',
-        auto_config: false,
-        libvirt__dhcp_enabled: false,
-        libvirt__forward_mode: 'none'
+        :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_port => '1133'
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid    
@@ -59,16 +55,12 @@ end
         libvirt__forward_mode: 'none'
       # link for eth1 --> pmx1:eth2
       device.vm.network :private_network,
-        ip: '0.0.0.0', 
-        auto_config: false,
-        libvirt__dhcp_enabled: false,
-        libvirt__forward_mode: 'none'
+        :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_port => '1122'
       # link for eth2 --> pmx3:eth3
       device.vm.network :private_network,
-        ip: '0.0.0.0',  
-        auto_config: false,
-        libvirt__dhcp_enabled: false,
-        libvirt__forward_mode: 'none'
+        :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_port => '2233'
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid
@@ -89,16 +81,12 @@ end
         libvirt__forward_mode: 'none'
       # link for eth1 --> pmx1:eth3
       device.vm.network :private_network,
-        ip: '0.0.0.0',  
-        auto_config: false,
-        libvirt__dhcp_enabled: false,
-        libvirt__forward_mode: 'none'
+        :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_port => '1133'
       # link for eth2 --> pmx2:eth3
       device.vm.network :private_network,
-        ip: '0.0.0.0', 
-        auto_config: false,
-        libvirt__dhcp_enabled: false,
-        libvirt__forward_mode: 'none'
+        :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_port => '2233'
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid    
