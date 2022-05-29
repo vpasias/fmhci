@@ -30,10 +30,16 @@ Vagrant.configure('2') do |config|
       # link for eth2 --> pmx2:eth2
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_local_ip => '127.0.0.1',
+        :libvirt__tunnel_local_port => "1111",
+        :libvirt__tunnel_ip => '127.0.0.1',
         :libvirt__tunnel_port => '1122'
       # link for eth3 --> pmx3:eth2
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_local_ip => '127.0.0.1',
+        :libvirt__tunnel_local_port => "1111",
+        :libvirt__tunnel_ip => '127.0.0.1',
         :libvirt__tunnel_port => '1133'
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
@@ -56,10 +62,16 @@ end
       # link for eth1 --> pmx1:eth2
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_local_ip => '127.0.0.1',
+        :libvirt__tunnel_local_port => "2222",
+        :libvirt__tunnel_ip => '127.0.0.1',
         :libvirt__tunnel_port => '1122'
       # link for eth2 --> pmx3:eth3
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_local_ip => '127.0.0.1',
+        :libvirt__tunnel_local_port => "2222",
+        :libvirt__tunnel_ip => '127.0.0.1',
         :libvirt__tunnel_port => '2233'
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
@@ -82,10 +94,16 @@ end
       # link for eth1 --> pmx1:eth3
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_local_ip => '127.0.0.1',
+        :libvirt__tunnel_local_port => "3333",
+        :libvirt__tunnel_ip => '127.0.0.1',
         :libvirt__tunnel_port => '1133'
       # link for eth2 --> pmx2:eth3
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
+        :libvirt__tunnel_local_ip => '127.0.0.1',
+        :libvirt__tunnel_local_port => "3333",
+        :libvirt__tunnel_ip => '127.0.0.1',
         :libvirt__tunnel_port => '2233'
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
