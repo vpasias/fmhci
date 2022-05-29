@@ -118,8 +118,13 @@ cat >/etc/motd <<'EOF'
     |_|
 EOF
 
-# install LLDP
+# Install LLDP
 apt-get install -y --no-install-recommends lldpd
+
+# Enable IPv6 Forwarding
+echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
+sysctl net.ipv6.conf.all.forwarding=1
+sysctl net.ipv6.conf.all.forwarding
 
 # show versions.
 uname -a
