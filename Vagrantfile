@@ -27,7 +27,7 @@ Vagrant.configure('2') do |config|
         auto_config: false,
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
-      device.vm.provision :shell, path: 'provision.sh', args: ip, lo0 
+      device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid    
       device.vm.provision :shell, path: 'summary.sh', args: ip    
