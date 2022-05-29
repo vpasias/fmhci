@@ -26,6 +26,9 @@ ifdown vmbr0
 cat >/etc/network/interfaces <<EOF
 auto lo
 iface lo inet loopback
+auto lo:0
+iface lo:0 inet static
+    address $lo0/128
 auto eth0
 iface eth0 inet dhcp
 auto eth1
@@ -42,6 +45,10 @@ iface vmbr0 inet static
     # NAT through eth0.
     post-up   iptables -t nat -A POSTROUTING -s '$ip/24' ! -d '$ip/24' -o eth0 -j MASQUERADE
     post-down iptables -t nat -D POSTROUTING -s '$ip/24' ! -d '$ip/24' -o eth0 -j MASQUERADE
+auto eth2
+iface eth1 inet manual
+auto eth3
+iface eth1 inet manual
 EOF
 sed -i -E "s,^[^ ]+( .*pve.*)\$,$ip\1," /etc/hosts
 sed 's,\\,\\\\,g' >/etc/issue <<'EOF'
@@ -110,6 +117,9 @@ cat >/etc/motd <<'EOF'
     | |
     |_|
 EOF
+
+# install LLDP
+apt-get install -y --no-install-recommends lldpd
 
 # show versions.
 uname -a
