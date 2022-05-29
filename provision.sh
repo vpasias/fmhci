@@ -2,6 +2,7 @@
 set -eux
 
 ip=$1
+lo0=$2
 fqdn=$(hostname --fqdn)
 
 # configure apt for non-interactive mode.
