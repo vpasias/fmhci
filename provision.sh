@@ -124,9 +124,14 @@ EOF
 # Install LLDP
 apt-get install -y --no-install-recommends lldpd
 
-# Enable IPv6 Forwarding
+# Enable IPv4 & IPv6 Forwarding
 echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
+echo "net.ipv4.conf.all.forwarding=1" >> /etc/sysctl.conf
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 sysctl net.ipv6.conf.all.forwarding=1
+sysctl net.ipv4.conf.all.forwarding=1
+sysctl net.ipv4.ip_forward=1
+sysctl -p
 sysctl net.ipv6.conf.all.forwarding
 
 # show versions.
