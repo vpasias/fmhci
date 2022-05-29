@@ -31,20 +31,22 @@ Vagrant.configure('2') do |config|
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
         :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "1111",
+        :libvirt__tunnel_local_port => "1122",
         :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '1122'
+        :libvirt__tunnel_port => '1111',
+        :libvirt__iface_name => "vif_pmx1_2"
       # link for eth3 --> pmx3:eth2
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
         :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "1111",
+        :libvirt__tunnel_local_port => "1133",
         :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '1133'
+        :libvirt__tunnel_port => '1111',
+        :libvirt__iface_name => "vif_pmx1_3"
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
-      device.vm.provision :shell, path: 'frr.sh', args: rid    
-      device.vm.provision :shell, path: 'summary.sh', args: ip    
+      device.vm.provision :shell, path: 'frr.sh', args: rid
+      device.vm.provision :shell, path: 'summary.sh', args: ip
 end
 
   ##### DEFINE VM for pmx2 #####
@@ -63,16 +65,18 @@ end
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
         :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "2222",
+        :libvirt__tunnel_local_port => "1122",
         :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '1122'
+        :libvirt__tunnel_port => '2222',
+        :libvirt__iface_name => "vif_pmx2_2"
       # link for eth2 --> pmx3:eth3
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
         :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "2222",
+        :libvirt__tunnel_local_port => "2233",
         :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '2233'
+        :libvirt__tunnel_port => '2222',
+        :libvirt__iface_name => "vif_pmx2_3"
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid
@@ -95,16 +99,18 @@ end
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
         :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "3333",
+        :libvirt__tunnel_local_port => "1133",
         :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '1133'
+        :libvirt__tunnel_port => '3333',
+        :libvirt__iface_name => "vif_pmx3_2"
       # link for eth2 --> pmx2:eth3
       device.vm.network :private_network,
         :libvirt__tunnel_type => 'udp',
         :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "3333",
+        :libvirt__tunnel_local_port => "2233",
         :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '2233'
+        :libvirt__tunnel_port => '3333',
+        :libvirt__iface_name => "vif_pmx3_3"
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid    
