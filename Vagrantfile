@@ -29,11 +29,13 @@ Vagrant.configure('2') do |config|
         libvirt__forward_mode: 'none'
       # link for eth2 --> pmx2:eth2
       device.vm.network :private_network,
+        ip: "",
         auto_config: false,
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
       # link for eth3 --> pmx3:eth2
       device.vm.network :private_network,
+        ip: "",
         auto_config: false,
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
@@ -57,11 +59,13 @@ end
         libvirt__forward_mode: 'none'
       # link for eth1 --> pmx1:eth2
       device.vm.network :private_network,
+        ip: "",    
         auto_config: false,
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
       # link for eth2 --> pmx3:eth3
       device.vm.network :private_network,
+        ip: "",   
         auto_config: false,
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
@@ -85,11 +89,13 @@ end
         libvirt__forward_mode: 'none'
       # link for eth1 --> pmx1:eth3
       device.vm.network :private_network,
+        ip: "",    
         auto_config: false,
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
       # link for eth2 --> pmx2:eth3
       device.vm.network :private_network,
+        ip: "",    
         auto_config: false,
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
