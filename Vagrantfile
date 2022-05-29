@@ -27,14 +27,14 @@ Vagrant.configure('2') do |config|
         auto_config: false,
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
-      device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
-      device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
-      device.vm.provision :shell, path: 'frr.sh', args: rid    
-      device.vm.provision :shell, path: 'summary.sh', args: ip    
       # link for eth2 --> pmx2:eth2
       device.vm.network :public_network, :bridge => 'br12', :dev => 'br12'
       # link for eth3 --> pmx3:eth2
       device.vm.network :public_network, :bridge => 'br13', :dev => 'br13'
+      device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
+      device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
+      device.vm.provision :shell, path: 'frr.sh', args: rid    
+      device.vm.provision :shell, path: 'summary.sh', args: ip    
 end
 
   ##### DEFINE VM for pmx2 #####
@@ -49,14 +49,14 @@ end
         auto_config: false,
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
+      # link for eth1 --> pmx1:eth2
+      device.vm.network :public_network, :bridge => 'br12', :dev => 'br12'
+      # link for eth2 --> pmx3:eth3
+      device.vm.network :public_network, :bridge => 'br23', :dev => 'br23'    
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid
       device.vm.provision :shell, path: 'summary.sh', args: ip
-      # link for eth1 --> pmx1:eth2
-      device.vm.network :public_network, :bridge => 'br12', :dev => 'br12'
-      # link for eth2 --> pmx3:eth3
-      device.vm.network :public_network, :bridge => 'br23', :dev => 'br23'
 end
 
   ##### DEFINE VM for pmx3 #####
@@ -71,14 +71,14 @@ end
         auto_config: false,
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
+      # link for eth1 --> pmx1:eth3
+      device.vm.network :public_network, :bridge => 'br13', :dev => 'br13'
+      # link for eth2 --> pmx2:eth3
+      device.vm.network :public_network, :bridge => 'br23', :dev => 'br23'   
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid    
       device.vm.provision :shell, path: 'summary.sh', args: ip       
-      # link for eth1 --> pmx1:eth3
-      device.vm.network :public_network, :bridge => 'br13', :dev => 'br13'
-      # link for eth2 --> pmx2:eth3
-      device.vm.network :public_network, :bridge => 'br23', :dev => 'br23'
 end
 
 end
