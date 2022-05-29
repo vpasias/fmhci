@@ -6,7 +6,7 @@ rid=$1
 # Install FRR
 apt-get install -y --no-install-recommends frr
 echo -e 'zebra=yes\nospf6d=yes' > frr-daemons
-sudo mv frr-daemons /etc/frr/daemons
+mv frr-daemons /etc/frr/daemons
 
 cat << EOF | tee /etc/frr/frr.conf
 frr defaults traditional
@@ -52,7 +52,7 @@ fc00::2 pmx2.example.com pmx2
 fc00::3 pmx3.example.com pmx3
 EOF
 
-cat << EOF | sudo tee /etc/modprobe.d/qemu-system-x86.conf
+cat << EOF | tee /etc/modprobe.d/qemu-system-x86.conf
 options kvm_intel nested=1
 EOF
 
