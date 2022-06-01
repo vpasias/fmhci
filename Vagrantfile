@@ -29,21 +29,9 @@ Vagrant.configure('2') do |config|
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
       # link for eth2 --> pmx2:eth2
-      device.vm.network :private_network,
-        :libvirt__tunnel_type => 'udp',
-        :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "1122",
-        :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '1111',
-        :libvirt__iface_name => "vif_pmx1_2"
+      device.vm.network :private_network, ip: "192.168.12.101", auto_config: false, libvirt__network_name: "br12", libvirt__dhcp_enabled: false, libvirt__forward_mode: "nat", :mac => "52:54:00:00:12:01"
       # link for eth3 --> pmx3:eth2
-      device.vm.network :private_network,
-        :libvirt__tunnel_type => 'udp',
-        :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "1133",
-        :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '1111',
-        :libvirt__iface_name => "vif_pmx1_3"
+      device.vm.network :private_network, ip: "192.168.13.101", auto_config: false, libvirt__network_name: "br13", libvirt__dhcp_enabled: false, libvirt__forward_mode: "nat", :mac => "52:54:00:00:13:01"
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid
@@ -64,21 +52,9 @@ end
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
       # link for eth1 --> pmx1:eth2
-      device.vm.network :private_network,
-        :libvirt__tunnel_type => 'udp',
-        :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "1122",
-        :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '2222',
-        :libvirt__iface_name => "vif_pmx2_2"
+      device.vm.network :private_network, ip: "192.168.12.102", auto_config: false, libvirt__network_name: "br12", libvirt__dhcp_enabled: false, libvirt__forward_mode: "nat", :mac => "52:54:00:00:12:02"
       # link for eth2 --> pmx3:eth3
-      device.vm.network :private_network,
-        :libvirt__tunnel_type => 'udp',
-        :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "2233",
-        :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '2222',
-        :libvirt__iface_name => "vif_pmx2_3"
+      device.vm.network :private_network, ip: "192.168.23.102", auto_config: false, libvirt__network_name: "br23", libvirt__dhcp_enabled: false, libvirt__forward_mode: "nat", :mac => "52:54:00:00:23:01"
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid
@@ -99,21 +75,9 @@ end
         libvirt__dhcp_enabled: false,
         libvirt__forward_mode: 'none'
       # link for eth1 --> pmx1:eth3
-      device.vm.network :private_network,
-        :libvirt__tunnel_type => 'udp',
-        :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "1133",
-        :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '3333',
-        :libvirt__iface_name => "vif_pmx3_2"
+      device.vm.network :private_network, ip: "192.168.13.103", auto_config: false, libvirt__network_name: "br13", libvirt__dhcp_enabled: false, libvirt__forward_mode: "nat", :mac => "52:54:00:00:13:02"
       # link for eth2 --> pmx2:eth3
-      device.vm.network :private_network,
-        :libvirt__tunnel_type => 'udp',
-        :libvirt__tunnel_local_ip => '127.0.0.1',
-        :libvirt__tunnel_local_port => "2233",
-        :libvirt__tunnel_ip => '127.0.0.1',
-        :libvirt__tunnel_port => '3333',
-        :libvirt__iface_name => "vif_pmx3_3"
+      device.vm.network :private_network, ip: "192.168.23.103", auto_config: false, libvirt__network_name: "br23", libvirt__dhcp_enabled: false, libvirt__forward_mode: "nat", :mac => "52:54:00:00:23:02"
       device.vm.provision :shell, path: 'provision.sh', args: [ip, lo0]
       device.vm.provision :shell, path: 'provision-pveproxy-certificate.sh', args: ip
       device.vm.provision :shell, path: 'frr.sh', args: rid    
